@@ -96,8 +96,24 @@ UseMM: true
 CatchableEntity:
     - SHEEP
 
-# If you have to custom item, you can change this to your want.
-# Set to 0 can disable it.
+# Custom Model Data values used to reskin the plugin's items via the bundled
+# "Safari Net" resource pack (see /resourcepack in this repo). customModelData
+# controls the Safari Net item (the thrown catch item), ballCustomModelData
+# controls the Net Fibre drop item.
+# Set to 0 to disable and fall back to the vanilla item look.
 # Never change it if you don't know what is this.
-customModelData: 0
+customModelData: 1
 ballCustomModelData: 0
+
+# Automatically push the Safari Net resource pack (see /resourcepack) to
+# players when they join, instead of relying on server.properties.
+ResourcePack:
+    enabled: false
+    # Must be a direct HTTPS link to the packaged zip (e.g. safari_net_pack.zip)
+    url: ""
+    # SHA-1 hash of that exact zip file, e.g. from `sha1sum safari_net_pack.zip`
+    sha1: ""
+    # Shown to the player in the "Do you want to download this resource pack?" prompt
+    prompt: "&aThis server uses a Safari Net resource pack for the catch item!"
+    # If true, players who decline the pack will be kicked
+    force: false

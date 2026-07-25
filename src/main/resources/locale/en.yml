@@ -55,15 +55,16 @@ guiSkullLore:
 #The plugin special item setting
 Items:
   CatchBall:
-    DisplayName: "&aCat&bch &cBall"
+    DisplayName: "&6Safari Net"
     Lore:
-      - "&7Used to capture catchable entity"
+      - "&7A woven net used to catch wild creatures"
+      - "&7Throw it at a catchable entity to capture it"
 
   DropItem:
-    DisplayName: "&6GoldEgg"
+    DisplayName: "&6Net Fibre"
     Lore:
       - "&7When destroying blocks, killing creatures, or laying eggs, there is a &e{PERCENT}%&7 chance of dropping"
-      - "&7Can be used with CraftRecipe to make CatchBall"
+      - "&7Can be used with CraftRecipe to weave a Safari Net"
 
 #The lore of the Catch List GUI
 DropSkullLore:

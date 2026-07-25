@@ -26,5 +26,11 @@ You can download a copy at [Modrinth](https://modrinth.com/plugin/catchball)
 - ChineseTW(繁體中文)
 - Custom at `./CatchBall/locale/`
 
+## Safari Net look:
+This fork reskins the catch item as a Safari Net instead of the default
+snowball look. See [`resourcepack/`](resourcepack) for the resource pack
+and deployment instructions, and `customModelData` in `config.yml` to
+enable/disable it.
+
 ## Bstats:
 ![Image](https://bstats.org/signatures/bukkit/CatchBall.svg)

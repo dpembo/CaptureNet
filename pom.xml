@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.nutt1101</groupId>
+    <artifactId>catchball</artifactId>
+    <version>2.1.2</version>
+    <packaging>jar</packaging>
+
+    <name>CatchBall</name>
+    <description>CatchBall</description>
+
+    <properties>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- plugin.yml uses the literal token ${version}; this property lets
+             resource filtering resolve it to the same value as ${project.version}. -->
+        <version>${project.version}</version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>enginehub</id>
+            <url>https://maven.enginehub.org/repo/</url>
+        </repository>
+        <repository>
+            <id>lumine</id>
+            <url>https://mvn.lumine.io/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>jitpack</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <repository>
+            <id>redprotect</id>
+            <url>https://raw.githubusercontent.com/FabioZumbi12/RedProtect/mvn-repo/</url>
+        </repository>
+        <repository>
+            <id>extendedclip</id>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+        </repository>
+        <repository>
+            <id>jeff-media</id>
+            <url>https://repo.jeff-media.com/public/</url>
+        </repository>
+        <repository>
+            <id>codemc</id>
+            <url>https://repo.codemc.io/repository/maven-public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>central-portal-snapshots</id>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>glaremasters-towny</id>
+            <url>https://repo.glaremasters.me/repository/towny/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Shaded & relocated at build time -->
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jeff_media</groupId>
+            <artifactId>SpigotUpdateChecker</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.tr7zw</groupId>
+            <artifactId>item-nbt-api</artifactId>
+            <version>2.15.8-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.handyplus.lib.adapter</groupId>
+            <artifactId>FoliaLib</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tchristofferson</groupId>
+            <artifactId>ConfigUpdater</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <!-- FoliaLib is Kotlin; the Gradle build applies the kotlin("jvm") plugin,
+             which auto-adds this. Maven needs it declared explicitly. -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+
+        <!-- compileOnly in Gradle -> provided in Maven: available at compile time,
+             not bundled into the shaded jar, expected to be supplied by the server
+             or another plugin at runtime. -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>1.20.5-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.lumine</groupId>
+            <artifactId>Mythic-Dist</artifactId>
+            <version>5.9.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sk89q.worldguard</groupId>
+            <artifactId>worldguard-bukkit</artifactId>
+            <version>7.0.14</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.TechFortress</groupId>
+            <artifactId>GriefPrevention</artifactId>
+            <version>17.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.angeschossen</groupId>
+            <artifactId>LandsAPI</artifactId>
+            <version>7.15.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.Xyness</groupId>
+            <artifactId>SimpleClaimSystem</artifactId>
+            <version>1.12.3.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.6</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.palmergames.bukkit.towny</groupId>
+            <artifactId>towny</artifactId>
+            <version>0.101.1.14</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.fabiozumbi12.RedProtect</groupId>
+            <artifactId>RedProtect-Core</artifactId>
+            <version>8.1.2</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.github.fabiozumbi12.RedProtect</groupId>
+            <artifactId>RedProtect-Spigot</artifactId>
+            <version>8.1.2</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Local jar, matches compileOnly(files("./libs/Residence5.1.7.5.jar")) -->
+        <dependency>
+            <groupId>com.bekvon.bukkit</groupId>
+            <artifactId>residence</artifactId>
+            <version>5.1.7.5</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/Residence5.1.7.5.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+
+        <resources>
+            <!-- plugin.yml needs ${version} expanded, matching processResources
+                 filesMatching("plugin.yml") { expand(props) } in build.gradle.kts -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>plugin.yml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>plugin.yml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>21</release>
+                </configuration>
+            </plugin>
+
+            <!-- Fat-jar equivalent of the shadowJar task, including the same
+                 package relocations. Unlike shadowJar (which writes
+                 CatchBall-<version>.jar and CatchBall-<version>-original.jar),
+                 the shade plugin's default behavior replaces the main artifact
+                 in place and stashes the slim jar as
+                 target/original-catchball-<version>.jar. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <minimizeJar>true</minimizeJar>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <relocations>
+                                <relocation>
+                                    <pattern>com.jeff_media.updatechecker</pattern>
+                                    <shadedPattern>tw.maoyue.catchball.libs.updatechecker</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>de.tr7zw.changeme.nbtapi</pattern>
+                                    <shadedPattern>tw.maoyue.catchball.libs.nbtapi</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.bstats</pattern>
+                                    <shadedPattern>tw.maoyue.catchball.libs.bstats</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

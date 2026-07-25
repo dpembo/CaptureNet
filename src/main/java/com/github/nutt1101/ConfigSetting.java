@@ -45,6 +45,11 @@ public class ConfigSetting {
     public static double catchFailRate;
     public static int customModelData;
     public static int ballCustomModelData;
+    public static boolean resourcePackEnabled;
+    public static String resourcePackUrl;
+    public static String resourcePackSha1;
+    public static String resourcePackPrompt;
+    public static boolean resourcePackForce;
     public static boolean UseRes;
     public static boolean UseGF;
     public static boolean UseLands;
@@ -147,6 +152,19 @@ public class ConfigSetting {
 
         ballCustomModelData = !config.isSet("ballCustomModelData") ? config.getInt("ballCustomModelData")
                 : 0;
+
+        resourcePackEnabled = config.isSet("ResourcePack.enabled") && config.getBoolean("ResourcePack.enabled");
+        resourcePackUrl = config.isSet("ResourcePack.url") ? config.getString("ResourcePack.url") : "";
+        resourcePackSha1 = config.isSet("ResourcePack.sha1") ? config.getString("ResourcePack.sha1") : "";
+        resourcePackPrompt = config.isSet("ResourcePack.prompt")
+                ? ChatColor.translateAlternateColorCodes('&', config.getString("ResourcePack.prompt"))
+                : ChatColor.translateAlternateColorCodes('&', "&aThis server uses a Safari Net resource pack!");
+        resourcePackForce = config.isSet("ResourcePack.force") && config.getBoolean("ResourcePack.force");
+
+        if (resourcePackEnabled && (resourcePackUrl == null || resourcePackUrl.isEmpty())) {
+            plugin.getLogger().log(Level.WARNING, ChatColor.RED + "ResourcePack.enabled is true but ResourcePack.url is empty, disabling automatic resource pack push.");
+            resourcePackEnabled = false;
+        }
 
         try {
             TranslationFileReader.init();

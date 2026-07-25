@@ -133,6 +133,7 @@ public class CatchBall extends JavaPlugin {
         }
         registerEvent.registerEvents(new SkullClick(), this);
         registerEvent.registerEvents(new GUIClick(), this);
+        registerEvent.registerEvents(new ResourcePackJoin(), this);
     }
 
     // register command

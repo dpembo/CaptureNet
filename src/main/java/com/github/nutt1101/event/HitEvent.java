@@ -23,6 +23,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -31,6 +32,9 @@ import org.bukkit.projectiles.BlockProjectileSource;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class HitEvent implements Listener {
@@ -38,6 +42,15 @@ public class HitEvent implements Listener {
     private Location hitLocation;
     private final Plugin plugin = CatchBall.plugin;
     private final String[] mmPackage = {"io.lumine.mythic.bukkit.BukkitAPIHelper", "io.lumine.xikage.mythicmobs.api.bukkit.BukkitAPIHelper"};
+
+    // Right-clicking an entity while holding a throwable item fires BOTH a
+    // PlayerInteractEntityEvent AND a normal item-throw (ProjectileLaunchEvent)
+    // for the same click. Cancelling the former doesn't stop the latter, so
+    // without this, a direct-interact catch also launches a real snowball that
+    // then flies past the (already-removed) target and drops a duplicate net.
+    // This tracks players who just caught something via direct interact so the
+    // resulting phantom throw can be cancelled instead of treated as a miss.
+    private final Set<UUID> justCaughtViaInteract = ConcurrentHashMap.newKeySet();
 
     /**
      * Check if an entity is catchable by comparing string names
@@ -149,8 +162,32 @@ public class HitEvent implements Listener {
             player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
         }
 
+        // The same right-click will also fire a ProjectileLaunchEvent for the vanilla
+        // throw. Flag it so onProjectileLaunch cancels that instead of treating it as
+        // a genuine (missed) throw. Cleared after 2 ticks as a safety net in case no
+        // launch event actually follows, so the flag can't leak into a later real throw.
+        UUID playerId = player.getUniqueId();
+        justCaughtViaInteract.add(playerId);
+        Bukkit.getScheduler().runTaskLater(plugin, () -> justCaughtViaInteract.remove(playerId), 2L);
+
         // Handle the entity catch
         handleEntityCatch(player, targetEntity, false);
+    }
+
+    @EventHandler
+    public void onProjectileLaunch(ProjectileLaunchEvent event) {
+        if (!(event.getEntity().getShooter() instanceof Player player)) {
+            return;
+        }
+        if (!checkCatchBall(event.getEntity())) {
+            return;
+        }
+        if (justCaughtViaInteract.remove(player.getUniqueId())) {
+            // This launch is the phantom vanilla throw that rides along with a direct
+            // right-click catch, not a genuine throw — cancel it so it can't fly off,
+            // miss, and drop a duplicate net.
+            event.setCancelled(true);
+        }
     }
 
     private void handleEntityCatch(Player player, Entity hitEntity, boolean isProjectile) {

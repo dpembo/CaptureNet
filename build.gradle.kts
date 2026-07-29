@@ -58,7 +58,6 @@ repositories {
 }
 
 dependencies {
-    api("org.bstats:bstats-bukkit:3.1.0")
     api("com.jeff_media:SpigotUpdateChecker:3.0.4")
     api("de.tr7zw:item-nbt-api:2.15.2-20250717.183515-1")
     api("cn.handyplus.lib.adapter:FoliaLib:1.2.1")
@@ -108,7 +107,6 @@ tasks {
 
         relocate("com.jeff_media.updatechecker", "tw.maoyue.catchball.libs.updatechecker")
         relocate("de.tr7zw.changeme.nbtapi", "tw.maoyue.catchball.libs.nbtapi")
-        relocate("org.bstats", "tw.maoyue.catchball.libs.bstats")
 
     }
 }

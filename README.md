@@ -4,13 +4,25 @@
   </div>
 </body>
 
-# CatchBall
+# CaptureNet
+
+CaptureNet is a fork of [MagicTeaMC/CatchBall2](https://github.com/MagicTeaMC/CatchBall2),
+reskinned as a Safari Net-themed capture item instead of the original
+Poké Ball style catch item.
 
 ## Download:
-You can download a copy at [Modrinth](https://modrinth.com/plugin/catchball)  
+This is a customized fork, not the original release. Grab a build from
+this repo's [Releases](https://github.com/dpembo/CaptureNet/releases),
+or build it yourself (see below). For the unmodified upstream plugin,
+see [Modrinth](https://modrinth.com/plugin/catchball).
+
+## Building:
+- Gradle: `./gradlew shadowJar` (or use `build-gradle.sh`)
+- Maven: `mvn clean package`
 
 ## Usage:
-[Wiki](https://github.com/MagicTeaMC/CatchBall2/wiki)
+Core mechanics are unchanged from upstream, so the original
+[Wiki](https://github.com/MagicTeaMC/CatchBall2/wiki) still applies.
 
 ## Support plugins:
 - Residence
@@ -24,13 +36,10 @@ You can download a copy at [Modrinth](https://modrinth.com/plugin/catchball)
 ## Language:
 - English(Default)
 - ChineseTW(繁體中文)
-- Custom at `./CatchBall/locale/`
+- Custom at `./CaptureNet/locale/`
 
 ## Safari Net look:
 This fork reskins the catch item as a Safari Net instead of the default
 snowball look. See [`resourcepack/`](resourcepack) for the resource pack
-and deployment instructions, and `customModelData` in `config.yml` to
-enable/disable it.
-
-## Bstats:
-![Image](https://bstats.org/signatures/bukkit/CatchBall.svg)
+and deployment instructions, and `customModelData` / `ResourcePack` in
+`config.yml` to configure it.

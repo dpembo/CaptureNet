@@ -40,8 +40,6 @@ public class CatchBall extends JavaPlugin {
     public static LandsIntegration landsAPI;
     public static SimpleClaimSystemAPI scsAPI;
 
-    private Metrics metrics;
-
     private boolean checkAndInitializePlugin(String pluginName) {
         boolean hasPlugin = this.getServer().getPluginManager().getPlugin(pluginName) != null;
         if (hasPlugin) {
@@ -55,9 +53,19 @@ public class CatchBall extends JavaPlugin {
 
         plugin = this;
 
+        plugin.getLogger().log(Level.INFO, "CaptureNet Initialization...");
+        plugin.getLogger().log(Level.INFO, " \r\n" + //
+                        " _____             _                    _   _      _   \r\n" + //
+                        "/  __ \\           | |                  | \\ | |    | |  \r\n" + //
+                        "| /  \\/ __ _ _ __ | |_ _   _ _ __ ___  |  \\| | ___| |_ \r\n" + //
+                        "| |    / _` | '_ \\| __| | | | '__/ _ \\ | . ` |/ _ \\ __|\r\n" + //
+                        "| \\__/\\ (_| | |_) | |_| |_| | | |  __/ | |\\  |  __/ |_ \r\n" + //
+                        " \\____/\\__,_| .__/ \\__|\\__,_|_|  \\___| \\_| \\_/\\___|\\__|\r\n" + //
+                        "            | |                    ______              \r\n" + //
+                        "            |_|                   |______|             \r\n" + //
+                        "");            
+        plugin.getLogger().log(Level.INFO, "CaptureNet Version " + this.getDescription().getVersion());
         ConfigSetting.checkConfig();
-
-        Metrics metrics = new Metrics(this, 12380);
 
         // Initialize plugin availability flags and APIs
         initializePluginIntegrations();
@@ -65,11 +73,11 @@ public class CatchBall extends JavaPlugin {
         registerEvent();
         registerCommand();
 
-        new UpdateChecker(this, UpdateCheckSource.GITHUB_RELEASE_TAG, "MagicTeaMC/CatchBall2")
-                .checkEveryXHours(1) // Check every hour
-                .setDownloadLink("https://modrinth.com/plugin/catchball/version/latest")
-                .setChangelogLink("https://modrinth.com/plugin/catchball/version/latest")
-                .checkNow(); // And check right now
+        // new UpdateChecker(this, UpdateCheckSource.GITHUB_RELEASE_TAG, "MagicTeaMC/CatchBall2")
+        //         .checkEveryXHours(1) // Check every hour
+        //         .setDownloadLink("https://modrinth.com/plugin/catchball/version/latest")
+        //         .setChangelogLink("https://modrinth.com/plugin/catchball/version/latest")
+        //         .checkNow(); // And check right now
 
         HandySchedulerUtil.init(this);
     }
@@ -113,10 +121,6 @@ public class CatchBall extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Shutdown metrics
-        if (metrics != null) {
-            metrics.shutdown();
-        }
 
         // Cancel all tasks registered by this plugin
         getServer().getScheduler().cancelTasks(this);

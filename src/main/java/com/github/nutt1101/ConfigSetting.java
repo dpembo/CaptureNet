@@ -147,10 +147,10 @@ public class ConfigSetting {
         CustomParticles = config.isSet("CustomParticles") ? config.getString("CustomParticles") : "CLOUD";
         catchFailRate = !config.isSet("catchFailRate") ? config.getDouble("catchFailRate")
                 : 0.1;
-        customModelData = !config.isSet("customModelData") ? config.getInt("customModelData")
+        customModelData = config.isSet("customModelData") ? config.getInt("customModelData")
                 : 0;
 
-        ballCustomModelData = !config.isSet("ballCustomModelData") ? config.getInt("ballCustomModelData")
+        ballCustomModelData = config.isSet("ballCustomModelData") ? config.getInt("ballCustomModelData")
                 : 0;
 
         resourcePackEnabled = config.isSet("ResourcePack.enabled") && config.getBoolean("ResourcePack.enabled");

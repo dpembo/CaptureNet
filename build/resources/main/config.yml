@@ -1,0 +1,119 @@
+# Some of the content has been relocated to the locale folder within the configuration file.
+# Discord: https://discord.gg/uQ4UXANnP2
+# GitHub: https://github.com/MagicTeaMC/CatchBall
+# Modrinth: https://modrinth.com/plugin/catchball
+# Latest config.yml: https://github.com/MagicTeaMC/CatchBall2/blob/release/src/main/resources/config.yml
+
+# Locale, Current support:
+# en(English), zh_tw(繁體中文_臺灣)
+# Help us to translate to other languages at Crowdin!
+# https://crowdin.com/project/catchball
+Locale: en
+
+# Enable or disable drop item feature (This switch requires a server restart to take effect)
+DropEnable: true
+# Drop Item need permission (only works entity/block drop)
+DropNeedPermission: false
+# Drop Item chance
+# Warning: Changing this may cause previously dropped items to not be craftable into catchball
+DropItemChance: 50%
+# Drop Item Material
+DropItemMaterial: EGG
+# Can drop item method (CHICKEN/ENTITY/BLOCK)
+# CHICKEN: Chicken lays eggs
+# ENTITY: Entity death
+# BLOCK: Block break (Non-creative mode)
+DropMethod: CHICKEN
+# Drop entity or block type
+DropEntityType: CHICKEN
+DropBlockType: DIAMOND_ORE
+
+# Captured sound effects, No sound to type (false)
+# Sound Support: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+CatchSuccessSound: ENTITY_ARROW_HIT_PLAYER
+
+# "AllowCatchableTamedOwnerIsNull" likely refers to the option of permitting players to capture tamed entities with a null owner, potentially affecting the entity capture mechanics by allowing acquisition of ownerless tamed entities.
+AllowCatchableTamedOwnerIsNull: true
+
+# Show particles if player catches entity.
+# This is an unstable feature, please report all bugs to our Discord or GitHub issues.
+ShowParticles: false
+
+# What particle do you want?
+# Particle Support: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Particle.html
+CustomParticles: CAMPFIRE_COSY_SMOKE
+
+# The probability (0-1) of a failed attempt to catch an entity. Set this value to 0 to disable this feature.
+# Setting it to 1 would mean every attempt to catch an entity would fail.
+# This is an unstable feature, please report all bugs to our Discord or GitHub issues.
+catchFailRate: 0.0
+
+# CatchBall on CraftRecipe
+Recipe:
+    # Whether to turn it on or off
+    enabled: true
+    # Recipe key
+    key:
+        # DROPITEM is the plugin provided custom item
+        # Item Support: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/material/package-summary.html
+        I: DROPITEM
+    # Recipe
+    shape:
+        - "III"
+        - "III"
+        - "III"
+
+# Disable if you don't want CatchBall check Residence flag
+UseRes: true
+# Catcher must have this permission flag to capture entity (depends on Plugin Residence)
+ResidenceFlag:
+    - animalkilling
+
+# Disable if you don't want CatchBall check GriefPrevention flag
+UseGF: true
+# Catcher must have this permission flag to capture entity (depends on Plugin GriefPrevention)
+GriefPreventionFlag:
+    - Access
+
+# Disable if you don't want CatchBall check Lands flag
+UseLands: true
+
+# Disable if you don't want CatchBall check RedProtect flag
+UseRP: true
+
+# Disable if you don't want CatchBall check SimpleClaimSystem flag
+UseSCS: true
+
+# Disable if you don't want CatchBall check Towny flag
+UseTowny: true
+
+# Disable if you don't want CatchBall to use PlaceholderAPI in messages
+UsePAPI: true
+
+# Disable if you don't want CatchBall check MythicMobs mobs
+UseMM: true
+
+CatchableEntity:
+    - SHEEP
+
+# Custom Model Data values used to reskin the plugin's items via the bundled
+# "Safari Net" resource pack (see /resourcepack in this repo). customModelData
+# controls the Safari Net item (the thrown catch item), ballCustomModelData
+# controls the Net Fibre drop item.
+# Set to 0 to disable and fall back to the vanilla item look.
+# Never change it if you don't know what is this.
+customModelData: 1
+ballCustomModelData: 0
+
+# Automatically push the Safari Net resource pack (see /resourcepack) to
+# players when they join, instead of relying on server.properties.
+ResourcePack:
+    enabled: false
+    # Must be a direct HTTPS link to the packaged zip (e.g. safari_net_pack.zip)
+    url: ""
+    # SHA-1 hash of that exact zip file, e.g. from `sha1sum safari_net_pack.zip`
+    sha1: ""
+    # Shown to the player in the "Do you want to download this resource pack?" prompt
+    prompt: "&aThis server uses a Safari Net resource pack for the catch item!"
+    # If true, players who decline the pack will be kicked
+    force: false

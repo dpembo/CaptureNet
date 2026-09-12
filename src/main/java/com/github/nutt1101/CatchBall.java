@@ -4,7 +4,6 @@ import cn.handyplus.lib.adapter.HandySchedulerUtil;
 import com.github.nutt1101.command.Command;
 import com.github.nutt1101.command.TabComplete;
 import com.github.nutt1101.event.*;
-import org.bstats.bukkit.Metrics;
 import com.jeff_media.updatechecker.UpdateCheckSource;
 import com.jeff_media.updatechecker.UpdateChecker;
 import org.bukkit.ChatColor;

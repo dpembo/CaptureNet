@@ -14,54 +14,23 @@ java.sourceCompatibility = JavaVersion.VERSION_21
 
 repositories {
     mavenLocal()
-    maven {
-        url = uri("https://repo.destroystokyo.com/repository/maven-public//")
-    }
 
-    maven {
-        url = uri("https://maven.enginehub.org/repo/")
-    }
-
-    maven {
-        url = uri("https://mvn.lumine.io/repository/maven-public/")
-    }
-
-    maven {
-        url = uri("https://jitpack.io")
-    }
-
-    maven {
-        url = uri("https://raw.githubusercontent.com/FabioZumbi12/RedProtect/mvn-repo/")
-    }
-
-    maven {
-        url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
-    }
-
-    maven {
-        url = uri("https://repo.jeff-media.com/public/")
-    }
-
-    maven {
-        url = uri("https://repo.codemc.io/repository/maven-public/")
-    }
-
-    maven {
-        url = uri("https://repo.maven.apache.org/maven2/")
-    }
-    maven {
-        url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-    }
-    maven {
-        url = uri("https://repo.glaremasters.me/repository/towny/")
-    }
+    maven { url = uri("https://maven.enginehub.org/repo/") }
+    maven { url = uri("https://mvn.lumine.io/repository/maven-public/") }
+    maven { url = uri("https://jitpack.io") }
+    maven { url = uri("https://raw.githubusercontent.com/FabioZumbi12/RedProtect/mvn-repo/") }
+    maven { url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/") }
+    maven { url = uri("https://repo.codemc.io/repository/maven-public/") }
+    maven { url = uri("https://repo.maven.apache.org/maven2/") }
+    maven { url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/") }
+    maven { url = uri("https://repo.glaremasters.me/repository/towny/") }
 }
 
 dependencies {
     api("com.jeff_media:SpigotUpdateChecker:3.0.4")
-    api("de.tr7zw:item-nbt-api:2.15.2-20250717.183515-1")
+    api("de.tr7zw:item-nbt-api:2.15.2")
     api("cn.handyplus.lib.adapter:FoliaLib:1.2.1")
-    api("com.tchristofferson:ConfigUpdater:2.2-SNAPSHOT")
+    api("com.tchristofferson:ConfigUpdater:2.2") 
     compileOnly("org.spigotmc:spigot-api:1.20.5-R0.1-SNAPSHOT")
     compileOnly("io.lumine:Mythic-Dist:5.9.0")
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.14")
